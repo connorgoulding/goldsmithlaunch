@@ -8,7 +8,6 @@ import { gsap } from 'gsap';
 import Navbar from '../components/ui/Navbar';
 import Footer from '../components/ui/Footer';
 import CustomCursor from '../components/ui/CustomCursor';
-import NoiseOverlay from '../components/ui/NoiseOverlay';
 
 export default function RootLayout({ children }) {
   useEffect(() => {
@@ -35,7 +34,6 @@ export default function RootLayout({ children }) {
       <body className="bg-[#F2F0E9] text-[#1A1A1A] font-sans selection:bg-[#CC5833] selection:text-[#F2F0E9] cursor-none">
         
         <CustomCursor />
-        <NoiseOverlay />
         <Navbar />
         
         {/* We removed the broken <ReactLenis> wrapper completely! */}
