@@ -13,10 +13,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-6 md:gap-12 font-sans text-sm text-[#F2F0E9]/70">
-          <Link href="/AUTOMATION" className="hover:text-white transition-colors" data-cursor="hide">Automation Ops</Link>
-          <Link href="/MARKETING" className="hover:text-white transition-colors" data-cursor="hide">Revenue Marketing</Link>
-          <Link href="/BLOG" className="hover:text-white transition-colors" data-cursor="hide">Lexicon</Link>
-          <Link href="/PRIVACY" className="hover:text-[#CC5833] transition-colors" data-cursor="hide">Privacy Policy</Link>
+          <Link href="/automation" className="hover:text-white transition-colors" data-cursor="hide">Automation Ops</Link>
+          <Link href="/marketing" className="hover:text-white transition-colors" data-cursor="hide">Revenue Marketing</Link>
+          <Link href="/blog" className="hover:text-white transition-colors" data-cursor="hide">Lexicon</Link>
+          <Link href="/privacy" className="hover:text-[#CC5833] transition-colors" data-cursor="hide">Privacy Policy</Link>
         </div>
       </div>
     </footer>
