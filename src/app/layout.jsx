@@ -1,41 +1,49 @@
-'use client';
+'use client'; 
 
 import './globals.css';
-import React, { useEffect, useRef } from 'react';
-import { ReactLenis } from 'lenis/react';
+import React, { useEffect } from 'react';
+import Lenis from 'lenis'; // <-- Pure Vanilla JS! No React version conflicts.
 import { gsap } from 'gsap';
+
 import Navbar from '../components/ui/Navbar';
 import Footer from '../components/ui/Footer';
 import CustomCursor from '../components/ui/CustomCursor';
 import NoiseOverlay from '../components/ui/NoiseOverlay';
 
 export default function RootLayout({ children }) {
-  const lenisRef = useRef(null);
-
-  // Sync GSAP with Lenis for global butter-smooth animations
   useEffect(() => {
+    // Initialize Vanilla Lenis
+    const lenis = new Lenis({ autoRaf: false });
+    
     function update(time) {
-      lenisRef.current?.lenis?.raf(time * 1000);
+      lenis.raf(time * 1000);
     }
+    
     gsap.ticker.add(update);
-    return () => gsap.ticker.remove(update);
+    
+    return () => {
+      gsap.ticker.remove(update);
+      lenis.destroy();
+    };
   }, []);
 
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <title>Goldsmith Growth | Enterprise AI & Operations</title>
+        <title>Enterprise AI & Operations | Goldsmith Growth</title>
       </head>
       <body className="bg-[#F2F0E9] text-[#1A1A1A] font-sans selection:bg-[#CC5833] selection:text-[#F2F0E9] cursor-none">
+        
         <CustomCursor />
         <NoiseOverlay />
         <Navbar />
-        <ReactLenis root ref={lenisRef} autoRaf={false}>
-          <main className="relative z-10 min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </ReactLenis>
+        
+        {/* We removed the broken <ReactLenis> wrapper completely! */}
+        <main className="relative z-10 min-h-screen">
+          {children}
+        </main>
+        
+        <Footer />
       </body>
     </html>
   );
