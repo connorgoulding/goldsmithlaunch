@@ -1,5 +1,4 @@
 import React from 'react';
-import Markdown from 'markdown-to-jsx';
 import { getPostData, getSortedPostsData } from '../../../lib/posts'; 
 import Link from 'next/link';
 
@@ -12,7 +11,9 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }) {
   const { slug } = await params;
-  const postData = getPostData(slug);
+  
+  // Await the data because our getPostData function is now async!
+  const postData = await getPostData(slug);
 
   return (
     <article className="w-full pt-48 pb-32 px-6 md:px-24">
@@ -47,7 +48,8 @@ export default async function PostPage({ params }) {
           prose-code:font-mono prose-code:text-[#CC5833] prose-code:bg-[#1A1A1A]/5 prose-code:px-1 prose-code:rounded
           prose-img:rounded-[2rem] prose-img:shadow-xl
         ">
-          <Markdown>{postData.content}</Markdown>
+          {/* Injecting raw HTML directly bypasses the React 19 component bug entirely */}
+          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </div>
       </div>
     </article>
