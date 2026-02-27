@@ -2,16 +2,17 @@
 
 import './globals.css';
 import React, { useEffect } from 'react';
-import Lenis from 'lenis'; // <-- Pure Vanilla JS! No React version conflicts.
+import Lenis from 'lenis'; 
 import { gsap } from 'gsap';
 
 import Navbar from '../components/ui/Navbar';
 import Footer from '../components/ui/Footer';
 import CustomCursor from '../components/ui/CustomCursor';
+import NoiseOverlay from '../components/ui/NoiseOverlay'; // <-- 1. We added the import here
 
 export default function RootLayout({ children }) {
   useEffect(() => {
-    // Initialize Vanilla Lenis
+    // Initialize Vanilla Lenis for smooth scrolling
     const lenis = new Lenis({ autoRaf: false });
     
     function update(time) {
@@ -29,14 +30,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <title>Enterprise AI & Operations | Goldsmith Growth</title>
+        <title>Goldsmith Growth | Enterprise AI & Operations</title>
       </head>
       <body className="bg-[#F2F0E9] text-[#1A1A1A] font-sans selection:bg-[#CC5833] selection:text-[#F2F0E9] cursor-none">
         
         <CustomCursor />
+        
+        <NoiseOverlay /> {/* <-- 2. We placed the overlay right here! */}
+        
         <Navbar />
         
-        {/* We removed the broken <ReactLenis> wrapper completely! */}
         <main className="relative z-10 min-h-screen">
           {children}
         </main>
