@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Search, PenTool, TrendingUp, X, Check } from 'lucide-react';
