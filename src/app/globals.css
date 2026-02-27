@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* We use utility classes for almost everything, but we ensure the body has no native scrollbar clashing with Lenis */
+body {
+  overflow-x: hidden;
+}
