@@ -1,7 +1,17 @@
 import React from 'react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getPostData } from '../../../lib/posts';
+// Notice we added getSortedPostsData to the import!
+import { getPostData, getSortedPostsData } from '../../../lib/posts'; 
 import Link from 'next/link';
+
+// === THIS IS THE NEW FUNCTION THAT FIXES CLOUDFLARE ===
+export async function generateStaticParams() {
+  const posts = getSortedPostsData();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+// ======================================================
 
 export default async function PostPage({ params }) {
   // Await params per Next.js App Router requirements
@@ -32,8 +42,15 @@ export default async function PostPage({ params }) {
           <div className="w-full h-[1px] bg-[#1A1A1A]/10 mt-12" />
         </header>
 
-        {/* Tailwind Typography Plugin Configuration */}
-        <div className="prose prose-lg md:prose-xl mx-auto prose-headings:font-outfit prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-[#1A1A1A] prose-p:font-sans prose-p:text-[#1A1A1A]/80 prose-p:leading-relaxed prose-a:text-[#CC5833] prose-a:no-underline hover:prose-a:underline prose-strong:text-[#1A1A1A] prose-strong:font-bold prose-blockquote:font-serif prose-blockquote:italic prose-blockquote:text-3xl prose-blockquote:text-[#2E4036] prose-blockquote:border-l-4 prose-blockquote:border-[#CC5833] prose-blockquote:bg-[#2E4036]/5 prose-blockquote:py-2 prose-blockquote:pr-4 prose-code:font-mono prose-code:text-[#CC5833] prose-code:bg-[#1A1A1A]/5 prose-code:px-1 prose-code:rounded prose-img:rounded-[2rem] prose-img:shadow-xl ">
+        <div className="prose prose-lg md:prose-xl mx-auto
+          prose-headings:font-outfit prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-[#1A1A1A]
+          prose-p:font-sans prose-p:text-[#1A1A1A]/80 prose-p:leading-relaxed
+          prose-a:text-[#CC5833] prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-[#1A1A1A] prose-strong:font-bold
+          prose-blockquote:font-serif prose-blockquote:italic prose-blockquote:text-3xl prose-blockquote:text-[#2E4036] prose-blockquote:border-l-4 prose-blockquote:border-[#CC5833] prose-blockquote:bg-[#2E4036]/5 prose-blockquote:py-2 prose-blockquote:pr-4
+          prose-code:font-mono prose-code:text-[#CC5833] prose-code:bg-[#1A1A1A]/5 prose-code:px-1 prose-code:rounded
+          prose-img:rounded-[2rem] prose-img:shadow-xl
+        ">
           <MDXRemote source={postData.content} />
         </div>
       </div>
