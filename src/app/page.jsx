@@ -6,7 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Search, PenTool, TrendingUp, X, Check } from 'lucide-react';
 import MagneticButton from '../components/ui/MagneticButton';
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function HomePage() {
   const mainRef = useRef(null);
