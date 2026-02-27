@@ -2,8 +2,10 @@
 const nextConfig = {
   output: 'export',
   images: { 
-    unoptimized: true // Cloudflare requires this for static exports!
-  }
+    unoptimized: true
+  },
+  // THIS IS THE MAGIC LINE THAT FIXES THE REACT 19 BUG:
+  transpilePackages: ['next-mdx-remote']
 };
 
 export default nextConfig;
