@@ -53,7 +53,7 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="hero-text text-[#1A1A1A]/70 font-sans max-w-xl text-lg leading-relaxed mb-12">
-            We build automation, AI, and marketing systems that actually run. No more 200-slide strategy decks. Just working architectures deployed in 4-8 weeks.
+            We build automation, AI, and marketing systems that actually run. No more 200-slide strategy decks. Just working systems deployed in 4-8 weeks.
           </p>
           <div className="hero-text w-max">
             <MagneticButton theme="moss" onClick={() => window.location.href='/book/consulting'}>
@@ -106,14 +106,14 @@ export default function HomePage() {
               id: 2,
               title: "The Build",
               price: "4-8 Weeks",
-              desc: "We deploy custom logic, API webhooks, and HubSpot architectures. Your team gets working systems, not theory.",
+              desc: "We deploy custom code and AI tailored for your existing tools. Your team gets working systems, not theory.",
               icon: <PenTool size={48} className="text-[#2E4036]" />
             },
             {
               id: 3,
               title: "Optimization",
               price: "Continuous",
-              desc: "Systems require calibration. We monitor telemetry, integrate new AI models, and scale your pipeline velocity.",
+              desc: "Systems require calibration. We monitor performance, integrate ideas, and grow with you.",
               icon: <TrendingUp size={48} className="text-[#CC5833]" />
             }
           ].map((card, i) => (
