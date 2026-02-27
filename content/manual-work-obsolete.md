@@ -1,5 +1,5 @@
 ---
-title: "Why Manual Work is Obsolete in 2025"
+title: "Why Manual Work is Obsolete in 2026"
 date: "Feb 27, 2026"
 tags: ["Automation", "Operations"]
 excerpt: "The cost of manual data entry isn't just time—it's the opportunity cost of what your team could be building instead."
