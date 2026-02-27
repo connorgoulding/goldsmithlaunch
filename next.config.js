@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  distDir: 'dist',
-  images: {
-    unoptimized: true,
-  },
+  images: { 
+    unoptimized: true // Cloudflare requires this for static exports!
+  }
 };
 
-module.exports = nextConfig;
+export default nextConfig;
