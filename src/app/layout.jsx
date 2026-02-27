@@ -2,7 +2,7 @@
 
 import './globals.css';
 import React, { useEffect, useRef } from 'react';
-import { ReactLenis } from '@studio-freight/react-lenis';
+import { ReactLenis } from 'lenis/react';
 import { gsap } from 'gsap';
 import Navbar from '../components/ui/Navbar';
 import Footer from '../components/ui/Footer';
