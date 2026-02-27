@@ -1,11 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { remark } from 'remark';
+import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'content');
 
 export function getSortedPostsData() {
-  // Ensure the directory exists before trying to read it
   if (!fs.existsSync(postsDirectory)) {
     fs.mkdirSync(postsDirectory);
     return [];
@@ -18,8 +19,7 @@ export function getSortedPostsData() {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-      // Parse the metadata section (frontmatter)
+      
       const matterResult = matter(fileContents);
 
       return {
@@ -28,20 +28,23 @@ export function getSortedPostsData() {
       };
     });
 
-  // Sort posts by date
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getPostData(slug) {
+// NOTE: This function is now ASYNC because remark processing takes a millisecond
+export async function getPostData(slug) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-  // Parse the metadata section and the markdown content
+  
   const matterResult = matter(fileContents);
+
+  // Convert markdown into HTML string
+  const processedContent = await remark().use(html).process(matterResult.content);
+  const contentHtml = processedContent.toString();
 
   return {
     slug,
-    content: matterResult.content,
+    contentHtml,
     ...matterResult.data,
   };
 }
