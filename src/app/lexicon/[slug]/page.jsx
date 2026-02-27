@@ -1,20 +1,16 @@
 import React from 'react';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-// Notice we added getSortedPostsData to the import!
+import Markdown from 'markdown-to-jsx';
 import { getPostData, getSortedPostsData } from '../../../lib/posts'; 
 import Link from 'next/link';
 
-// === THIS IS THE NEW FUNCTION THAT FIXES CLOUDFLARE ===
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
-// ======================================================
 
 export default async function PostPage({ params }) {
-  // Await params per Next.js App Router requirements
   const { slug } = await params;
   const postData = getPostData(slug);
 
@@ -51,7 +47,7 @@ export default async function PostPage({ params }) {
           prose-code:font-mono prose-code:text-[#CC5833] prose-code:bg-[#1A1A1A]/5 prose-code:px-1 prose-code:rounded
           prose-img:rounded-[2rem] prose-img:shadow-xl
         ">
-          <MDXRemote source={postData.content} />
+          <Markdown>{postData.content}</Markdown>
         </div>
       </div>
     </article>
